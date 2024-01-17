@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Crear Pago</title>
+  <link rel="stylesheet" href="/css/user-style-cargo.css">
+</head>
+<body>
+  <h1>Crear Pago</h1>
+  
+  <form action="crear_pago" method="post"> <!-- Asegúrate de que la acción esté correcta según tu enrutamiento -->
+    <label for="id_persona_cliente">Cliente:</label>
+    <select name="id_persona_cliente" id="id_persona_cliente">
+      <% clientes.forEach(cliente => { %>
+        <option value="<%= cliente.id_persona %>"><%= cliente.nom_persona %></option>
+      <% }) %>
+    </select>
+  
+    <label for="id_forma_pago">Forma de Pago:</label>
+    <select name="id_forma_pago" id="id_forma_pago">
+      <% formasPago.forEach(formaPago => { %>
+        <option value="<%= formaPago.id_forma_pago %>"><%= formaPago.forma_pago %></option>
+      <% }) %>
+    </select>
+
+    <label for="fe_pago">Fecha de Pago:</label>
+    <input type="date" name="fe_pago" id="fe_pago" required>
+  
+    <!-- Removido el input para monto -->
+  
+    <label for="id_factura">Factura:</label>
+    <select name="id_factura" id="id_factura">
+      <% facturas.forEach(factura => { %>
+        <option value="<%= factura.id_factura %>">
+          <%= factura.id_factura %> - <%= new Date(factura.fe_factura).toLocaleDateString('es-ES') %>
+        </option>
+      <% }) %>
+    </select>
+
+    <!-- Agregamos el select para el id_banco -->
+    <label for="id_banco">Banco:</label>
+    <select name="id_banco" id="id_banco">
+      <% bancos.forEach(banco => { %>
+        <option value="<%= banco.id_banco %>"><%= banco.nom_banco %></option>
+      <% }) %>
+    </select>
+
+
+  
+    <input type="submit" value="Crear Pago">
+  </form>
+</body>
+</html>

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Crear Reglones</title>
+  <link rel="stylesheet" href="/css/user-style-cargo.css">
+  <style>
+    .producto { margin-bottom: 10px; }
+    .producto label { margin-right: 5px; }
+    #productos { margin-bottom: 10px; }
+  </style>
+</head>
+<body>
+  <h1>Crear Reglones</h1>
+  <form action="reglon" method="post" id="formReglon">
+    <div id="productos">
+      <div class="producto">
+        <!-- ID Pago -->
+        <label for="id_pago_0">ID Pago:</label>
+        <select name="productos[0][id_pago]" id="id_pago_0" required>
+          <% pagos.forEach(pago => { %>
+            <option value="<%= pago.id_pago %>"><%= pago.forma_pago %></option>
+          <% }); %>
+        </select>
+
+        <!-- ID Factura -->
+        <label for="id_factura_0">ID Factura:</label>
+        <select name="productos[0][id_factura]" id="id_factura_0" required>
+          <% facturas.forEach(factura => { %>
+            <option value="<%= factura.id_factura %>"><%= factura.nombre_cliente %> - <%= factura.nombre_vendedor %></option>
+          <% }); %>
+        </select>
+
+        <!-- ID Producto Presentación -->
+        <label for="id_producto_presentacion_0">ID Producto Presentación:</label>
+        <select name="productos[0][id_producto_presentacion]" id="id_producto_presentacion_0" required>
+          <% productos.forEach(producto => { %>
+            <option value="<%= producto.id_producto_presentacion %>"><%= producto.de_producto %> - <%= producto.de_presentacion %> ($<%= producto.precio %>)</option>
+          <% }); %>
+        </select>
+
+        <!-- Cantidad -->
+        <label for="cantidad_0">Cantidad:</label>
+        <input type="number" name="productos[0][cantidad]" id="cantidad_0" required>
+      </div>
+    </div>
+    <button type="button" onclick="agregarProducto()">Agregar Producto</button>
+    <button type="submit">Crear Reglones</button>
+  </form>
+
+
+  <script type="text/javascript">
+    const dataPagos = JSON.parse('<%- JSON.stringify(pagos) %>');
+    const dataFacturas = JSON.parse('<%- JSON.stringify(facturas) %>');
+    const dataProductos = JSON.parse('<%- JSON.stringify(productos) %>');
+  </script>
+  
+
+
+  <script type="text/javascript">
+    let productoIndex = 1;
+  
+    function agregarProducto() {
+      const productosDiv = document.getElementById('productos');
+      const nuevoProducto = document.createElement('div');
+      nuevoProducto.classList.add('producto');
+  
+      let htmlContent = '';
+  
+      // Etiqueta y select para ID Pago
+      htmlContent += '<label for="id_pago_' + productoIndex + '">ID Pago:</label>';
+      htmlContent += '<select name="productos[' + productoIndex + '][id_pago]" id="id_pago_' + productoIndex + '" required>';
+      dataPagos.forEach(pago => {
+        htmlContent += '<option value="' + pago.id_pago + '">' + pago.forma_pago + '</option>';
+      });
+      htmlContent += '</select>';
+  
+      // Etiqueta y select para ID Factura
+      htmlContent += '<label for="id_factura_' + productoIndex + '">ID Factura:</label>';
+      htmlContent += '<select name="productos[' + productoIndex + '][id_factura]" id="id_factura_' + productoIndex + '" required>';
+      dataFacturas.forEach(factura => {
+        htmlContent += '<option value="' + factura.id_factura + '">' + factura.nombre_cliente + ' - ' + factura.nombre_vendedor + '</option>';
+      });
+      htmlContent += '</select>';
+  
+      // Etiqueta y select para ID Producto Presentación
+      htmlContent += '<label for="id_producto_presentacion_' + productoIndex + '">ID Producto Presentación:</label>';
+      htmlContent += '<select name="productos[' + productoIndex + '][id_producto_presentacion]" id="id_producto_presentacion_' + productoIndex + '" required>';
+      dataProductos.forEach(producto => {
+        htmlContent += '<option value="' + producto.id_producto_presentacion + '">' + producto.de_producto + ' - ' + producto.de_presentacion + ' ($' + producto.precio + ')</option>';
+      });
+      htmlContent += '</select>';
+  
+      // Etiqueta y campo para Cantidad
+      htmlContent += '<label for="cantidad_' + productoIndex + '">Cantidad:</label>';
+      htmlContent += '<input type="number" name="productos[' + productoIndex + '][cantidad]" id="cantidad_' + productoIndex + '" min="1" required>';
+  
+      nuevoProducto.innerHTML = htmlContent;
+      productosDiv.appendChild(nuevoProducto);
+      productoIndex++;
+    }
+  </script>
+  
+  
+
+
+
+
+
+  
+</body>
+</html>

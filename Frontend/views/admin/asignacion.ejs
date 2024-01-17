@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
+    <title>Bootstrap Example</title>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="/css/admin-style-cargo.css">
+  </head>
+  <body class="p-3 m-0 border-0 bd-example m-0 border-0">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/admins/admin/panel">inicio</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Cargo
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="/admins/registrarPersona">agregar persona</a></li>
+                  <li><a class="dropdown-item" href="/admins/asignarCargo">Colocar cargos</a></li>
+                  <li><a class="dropdown-item" href="/admins/viewcargos">View cargos</a></li>
+                  <li><a class="dropdown-item" href="/admins/asignarusuario">Asignar usuario</li>
+                  <li><a class="dropdown-item" href="/admins/viewusuario">view users</li>
+                </ul>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Productos
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="/admins/producto">producto</a></li>
+                  <li><a class="dropdown-item" href="/admins/producto_presentacion">view productos</a></li>
+                </ul>
+              </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Rutas
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="/admins/rutas">rutas_list</a></li>
+                <li><a class="dropdown-item" href="/admins/locales">local</a></li>
+                <li><a class="dropdown-item" href="/admins/persona_local">persona local</a></li>
+                <li><a class="dropdown-item" href="/admins/asignacion">asignacion</a></li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Nomina
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="/admins/nomina">Registrar Pago</a></li>
+                <li><a class="dropdown-item" href="/admins/viewnomina">Control de Pago</a></li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Reportes
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="/admins/venta-por-ruta">Ventas por ruta</a></li>
+                <li><a class="dropdown-item" href="/admins/deuda_total">Deudas</a></li>
+                <li><a class="dropdown-item" href="/admins/ventas-total">Venta total</a></li>
+                <li><a class="dropdown-item" href="/admins/pago-vendedor">Reporte a Pago a Vendedores</a></li>
+              </ul>
+            </li>
+
+            <li> <a href="/users/logout">Logout</a></li>
+          </ul>
+        </div>
+        
+      </div>
+    </nav>
+  <h1>Asignaciones</h1>
+  <form action="asignacion" method="post">
+    <label for="persona">Persona:</label>
+    <select name="id_persona" id="persona" cargo="id_cargo">
+      <% personas.forEach(function(persona) { %>
+        <option value="<%= persona.id_persona %>"><%= persona.nom_persona %></option>
+      <% }) %>
+    </select>
+
+    <label for="producto_presentacion">Producto Presentación:</label>
+    <select name="id_producto_presentacion" id="producto_presentacion">
+      <% productosPresentacion.forEach(function(pp) { %>
+        <option value="<%= pp.id_producto_presentacion %>"><%= pp.de_producto %> - <%= pp.de_presentacion %></option>
+      <% }) %>
+    </select>
+
+    
+      <!-- Otros campos del formulario -->
+      <label for="fe_asignacion">Fecha de Asignación:</label>
+      <input type="date" id="fe_asignacion" name="fe_asignacion" required>
+      <!-- Botón de envío -->
+  
+    
+
+    <label for="estado">Estado:</label>
+    <select name="id_estado" id="estado">
+      <% estados.forEach(function(estado) { %>
+        <option value="<%= estado.id_estado %>"><%= estado.ti_estado %></option>
+      <% }) %>
+    </select>
+
+    <button type="submit">Asignar Ruta</button>
+  </form><br>
+  <h2>Listado de Asignaciones</h2>
+  <div id="data-grid">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Persona</th>
+          <th>Producto</th>
+          <th>Presentación</th>
+          <th>Fecha de Asignación</th>
+          <th>Estado</th>
+          <th>Acción</th> <!-- Columna para el botón de actualización -->
+        </tr>
+      </thead>
+      <tbody>
+        <% asignaciones.forEach(function(asignacion) { %>
+          <tr>
+            <td><%= asignacion.nom_persona %></td>
+            <td><%= asignacion.de_producto %></td>
+            <td><%= asignacion.de_presentacion %></td>
+            <td><%= new Date(asignacion.fe_asignacion).toLocaleDateString() %></td>
+            <td><%= asignacion.ti_estado %></td>
+            <td>
+              <!-- Formulario para actualizar el estado de la asignación -->
+              <form action="asignacion-update-status" method="post">
+                <input type="hidden" name="id_asignacion" value="<%= asignacion.id_asignacion %>">
+                <select name="id_estado" id="estado">
+                  <% estados.forEach(function(estado) { %>
+                    <option value="<%= estado.id_estado %>" <%= asignacion.id_estado === estado.id_estado ? 'selected' : '' %>><%= estado.ti_estado %></option>
+                  <% }) %>
+                </select>
+                <button type="submit">Actualizar Estado</button>
+              </form>
+            </td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </div>
+  
+
+  <div>
+    <a class="boton" href="admin/panel">Back</a>
+</div>
+</body>
+</html>

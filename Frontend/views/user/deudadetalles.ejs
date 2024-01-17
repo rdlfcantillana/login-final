@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Detalles de Deuda</title>
+  <link rel="stylesheet" href="/css/user-style-cargo.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Detalles de Deuda</h1>
+    <div class="content-wrapper">
+      <div class="table-container">
+        <table class="custom-table">
+          <thead>
+            <tr>
+              <th>ID Deuda</th>
+              <th>ID Factura</th>
+              <th>ID Pago</th>
+              <th>Monto Reglón</th>
+              <th>Nombre Cliente</th>
+              <th>Nombre Vendedor</th>
+              <th>Fecha Factura</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% detallesDeuda.forEach(detalle => { %>
+              <tr>
+                <td><%= detalle.id_deuda %></td>
+                <td><%= detalle.id_factura %></td>
+                <td><%= detalle.id_pago %></td>
+                <td>$<%= detalle.monto_reglon ? Number(detalle.monto_reglon).toFixed(2) : '0.00' %></td>
+                <td><%= detalle.nombre_cliente %></td>
+                <td><%= detalle.nombre_vendedor %></td>
+                <td><%= new Date(detalle.fe_factura).toLocaleDateString('es-ES') %></td>
+                <td>
+                  <form action="eliminar-deuda/<%= detalle.id_deuda %>" method="post">
+                    <button type="submit">Eliminar</button>
+                  </form>
+                </td>
+              </tr>
+            <% }) %>
+          </tbody>
+        </table>
+      </div>
+      
+      <a href="user/panel" class="boton">Volver al Panel</a>
+    
+    </div>
+  </div>
+</body>
+</html>

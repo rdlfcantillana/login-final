@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Vista General</title>
+    <link rel="stylesheet" href="/css/user-style-cargo.css">
+
+    <!-- Incluye aquí tus archivos CSS u otros archivos de cabecera necesarios -->
+</head>
+<body>
+    <h1>Tabla de Intereses por falta de pago</h1>
+    <div class="table-responsive">
+        <table class="table table-striped">Tabla para mostrar los datos
+        <thead>
+            <tr>
+                <th>No° Factura</th>
+                <th>No° Deuda</th>
+                <th>No° Mora</th>
+                <th>Fecha Inicio Mora</th>
+                <th>Tasa Interés %</th>
+                <th>Monto Interés Acumulado</th>
+                <th>Estado</th>
+                <th>Fecha Último Cálculo</th>
+                <th>Nombre del Cliente</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% registros.forEach(registro => { %>
+                <tr>
+                    <td><%= registro.id_factura %></td>
+                    <td><%= registro.id_deuda %></td>
+                    <!-- Asegúrate de que los nombres de campos aquí coincidan con los de tu consulta SQL -->
+                    <td><%= registro.id_mora %></td>
+                    <td><%= registro.fecha_inicio_mora.toISOString().substring(0, 10) %></td>
+                    <td><%= registro.tasa_interes %></td>
+                    <td><%= registro.monto_interes_acumulado %></td>
+                    <td><%= registro.estado %></td>
+                    <td><%= registro.fecha_ultimo_calculo.toISOString().substring(0, 10) %></td>
+                    <td><%= registro.nom_persona %></td>
+                    <td>
+                        <form action="actualizar-mora/<%= registro.id_mora %>" method="post">
+                            <select name="nuevo_estado">
+                                <option value="pendiente" <%= registro.estado === 'pendiente' ? 'selected' : '' %>>Pendiente</option>
+                                <option value="pagado" <%= registro.estado === 'pagada' ? 'selected' : '' %>>Pagada</option>
+                            </select>
+                            <button type="submit">Actualizar Estado</button>
+                        </form>
+                    </td>
+                </tr>
+            <% }); %>
+        </tbody>
+    </table>
+    <a href="user/panel" class="boton">Volver al Panel</a>
+
+</body>
+</html>

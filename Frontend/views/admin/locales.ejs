@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
+    <title>Bootstrap Example</title>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="/css/admin-style-cargo.css">
+  </head>
+  <body class="p-3 m-0 border-0 bd-example m-0 border-0">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/admins/admin/panel">inicio</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Cargo
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="/admins/registrarPersona">agregar persona</a></li>
+                  <li><a class="dropdown-item" href="/admins/asignarCargo">Colocar cargos</a></li>
+                  <li><a class="dropdown-item" href="/admins/viewcargos">View cargos</a></li>
+                  <li><a class="dropdown-item" href="/admins/asignarusuario">Asignar usuario</li>
+                  <li><a class="dropdown-item" href="/admins/viewusuario">view users</li>
+                </ul>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Productos
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="/admins/producto">producto</a></li>
+                  <li><a class="dropdown-item" href="/admins/producto_presentacion">view productos</a></li>
+                </ul>
+              </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Rutas
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="/admins/rutas">rutas_list</a></li>
+                <li><a class="dropdown-item" href="/admins/locales">local</a></li>
+                <li><a class="dropdown-item" href="/admins/persona_local">persona local</a></li>
+                <li><a class="dropdown-item" href="/admins/asignacion">asignacion</a></li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Nomina
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="/admins/nomina">Registrar Pago</a></li>
+                <li><a class="dropdown-item" href="/admins/viewnomina">Control de Pago</a></li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Reportes
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="/admins/venta-por-ruta">Ventas por ruta</a></li>
+                <li><a class="dropdown-item" href="/admins/deuda_total">Deudas</a></li>
+                <li><a class="dropdown-item" href="/admins/ventas-total">Venta total</a></li>
+                <li><a class="dropdown-item" href="/admins/pago-vendedor">Reporte a Pago a Vendedores</a></li>
+              </ul>
+            </li>
+
+            <li> <a href="/users/logout">Logout</a></li>
+          </ul>
+        </div>
+        
+      </div>
+    </nav>
+  <h1>Locales y Rutas</h1>
+  
+  <!-- Formulario para agregar un nuevo local -->
+  <form action="locales" method="post">
+    <input type="text" name="nom_local" placeholder="Nombre del local" required>
+    <input type="text" name="num_local" placeholder="Número del local" required>
+    <input type="text" name="dir_local" placeholder="Dirección del local" required>
+    <input type="text" name="re_local" placeholder="Referencia del local" required>
+    <select name="id_ruta" required>
+      <% rutas.forEach(function(ruta) { %>
+        <option value="<%= ruta.id_ruta %>">
+          <%= ruta.av_ruta %> - <%= ruta.ca_ruta %> - <%= ruta.mu_ruta %>
+        </option>
+      <% }) %>
+    </select>
+    <button type="submit">Agregar Local</button>
+  </form>
+  <br>
+  <h1>Locales y sus rutas</h1>
+    <div id="data-grid">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Nombre Del Local</th>
+            <th>Numero De Local</th>
+            <th>Direccion Del Local</th>
+            <th>Referencia Del Local</th>
+            <th>Avenida</th>
+            <th>Calle</th>
+            <th>Municipio</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% locales.forEach(function(local) { %>
+            <% // Encontrar la ruta correspondiente al local
+               let rutaLocal = rutas.find(ruta => ruta.id_ruta === local.id_ruta);
+               if (rutaLocal && local.nom_local && local.num_local && local.dir_local && local.re_local) { %>
+                <tr>
+                  <td><%= local.nom_local %></td>
+                  <td><%= local.num_local %></td>
+                  <td><%= local.dir_local %></td>
+                  <td><%= local.re_local %></td>
+                  <td><%= rutaLocal.av_ruta %></td>
+                  <td><%= rutaLocal.ca_ruta %></td>
+                  <td><%= rutaLocal.mu_ruta %></td>
+                </tr>
+            <% } %>
+          <% }) %>
+        </tbody>
+      </table>
+    </div>
+    <div>
+</div>
+  <div>
+    <a class="boton" href="admin/panel">Back</a>
+</div>
+</body>
+</html>

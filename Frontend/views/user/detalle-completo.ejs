@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Detalle Completo</title>
+  <link rel="stylesheet" href="/css/user-style-cargo.css">
+  <!-- <style>
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    th, td {
+        border: 1px solid black;
+        padding: 8px;
+        text-align: left;
+    }
+    th {
+        background-color: #f2f2f2;
+    }
+</style> -->
+</head>
+<body>
+  <h1>Detalle Completo</h1>
+  <div class="table-responsive">
+    <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>ID Factura</th>
+        <th>Local</th>
+        <th>Dirección</th>
+        <th>Cliente</th>
+        <th>Vendedor</th>
+        <th>Forma de Pago</th>
+        <th>Banco</th>
+        <th>Fecha</th>
+        <th>Producto</th>
+        <th>Presentación</th>
+        <th>Precio</th>
+        <th>Cantidad</th>
+        <th>Monto</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% detalles.forEach(detalle => { %>
+        <tr>
+          <td><%= detalle.id_factura %></td>
+          <td><%= detalle.nom_local %></td>
+          <td><%= detalle.dir_local %></td>
+          <td><%= detalle.nombre_cliente %></td>
+          <td><%= detalle.nombre_vendedor %></td>
+          <td><%= detalle.forma_pago %></td>
+          <td><%= detalle.nom_banco %></td>
+          <td><%= new Date(detalle.fe_factura).toLocaleDateString('es-ES') %></td>
+          <td><%= detalle.de_producto %></td>
+          <td><%= detalle.de_presentacion %></td>
+          <td>$<%= Number(detalle.precio).toFixed(2) %></td>
+          <td><%= detalle.cantidad %></td>
+          <td>$<%= Number(detalle.monto).toFixed(2) %></td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+  <a href="user/panel" class="boton">Volver al Panel</a>
+</body>
+</html>

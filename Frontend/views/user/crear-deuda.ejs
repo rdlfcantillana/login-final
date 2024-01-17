@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Crear Deuda</title>
+  <link rel="stylesheet" href="/css/user-style-cargo.css">
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var selectFactura = document.getElementById('id_factura');
+      var selectReglon = document.getElementById('id_reglon');
+      var opcionesReglon = Array.from(selectReglon.options);
+
+      selectFactura.addEventListener('change', function() {
+        var idFacturaSeleccionada = this.value;
+        selectReglon.innerHTML = '';
+        opcionesReglon.forEach(function(opcion) {
+          if (opcion.dataset.factura === idFacturaSeleccionada) {
+            selectReglon.appendChild(opcion);
+          }
+        });
+        if (selectReglon.options.length === 0) {
+          selectReglon.disabled = true;
+        } else {
+          selectReglon.disabled = false;
+        }
+      });
+    });
+  </script>
+</head>
+<body>
+  <h1>Crear Deuda</h1>
+  <form action="deuda" method="post">
+    <label for="id_factura">ID Factura:</label>
+    <select name="id_factura" id="id_factura">
+      <option value="">Selecciona una factura</option>
+      <% facturas.forEach(factura => { %>
+        <option value="<%= factura.id_factura %>"><%= factura.id_factura %></option>
+      <% }) %>
+    </select>
+    
+    <label for="id_reglon">ID Reglón:</label>
+    <select name="id_reglon" id="id_reglon" disabled>
+      <% reglones.forEach(reglon => { %>
+        <!-- Uso de data-factura para filtrar las opciones basadas en la factura seleccionada -->
+        <option value="<%= reglon.id_reglon %>" data-factura="<%= reglon.id_factura %>"><%= reglon.id_reglon %></option>
+      <% }) %>
+    </select>
+
+    <input type="submit" value="Crear Deuda">
+  </form>
+</body>
+</html>

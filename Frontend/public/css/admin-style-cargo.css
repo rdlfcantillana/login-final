@@ -1,0 +1,198 @@
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@700&display=swap');
+
+.navbar {
+  border: 1px solid #333; /* Border color updated */
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.bg-body-tertiary {
+  border-color: #333; /* Border color updated for navbar */
+}
+
+.navbar a:hover {
+  color: #0851d8; /* Highlight color when hovered over */
+}
+body {
+  background-color: #e2e2e2;
+  Font-family: Baskerville, Baskerville Old Face, Garamond, Times New Roman, serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+h1 {
+  color: #0851d8;
+  margin-top: 30px;
+  font-size: 2.5rem; /* Tamaño de fuente para pantallas grandes */
+  animation: mover-Izq-a-Der 2s 1;
+}
+@keyframes mover-Izq-a-Der{
+  from{
+    transform: translateX(-100px);
+
+  }
+  to{
+    transform: translateX(5px);
+  }
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem; /* Tamaño de fuente base para todos los dispositivos */
+  margin-bottom: 10px; /* Espacio entre campos de entrada */
+}
+
+input[type="date"] {
+  width: 150px; /* Ajusta este valor según lo pequeño que quieras que sea */
+}
+
+form {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  width: 100%;
+  max-width: 600px; /* Ancho máximo para pantallas grandes */
+}
+
+table {
+  width: 100%;
+  margin-bottom: 20px;
+  background-color: #ffffff;
+  border-collapse: collapse;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+th, td {
+  padding: 10px;
+  border: 1px solid #dee2e6;
+  text-align: left;
+}
+
+th {
+  background-color: #f8f9fa;
+  color: #495057;
+  font-weight: bold;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+tbody tr:hover {
+  background-color: #eaeaea;
+}
+
+
+button[type="submit"] {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  width: 50%;
+  height: 25%;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+  margin-bottom: 10px; /* Espacio entre botones */
+}
+
+button[type="submit"]:hover{
+  background-color: #45a049;
+}
+button[type="submit2"] {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  width: 50%;
+  height: 50%;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+  margin-bottom: 10px; /* Espacio entre botones */
+}
+
+button[type="submit"]:hover{
+  background-color: #45a049;
+}
+.boton {
+  background-color: rgb(250, 3, 3);
+  color: white;
+  border: none;
+  width: 100%;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+  margin-bottom: 10px; /* Espacio entre botones */
+}
+
+.boton:hover {
+  background-color: rgb(203, 0, 0);
+}
+
+/* Animation keyframes */
+@keyframes fadeIn {
+  0% { opacity: 0; filter: blur(20px); }
+  100% { opacity: 1; filter: blur(0); }
+}
+
+/* Apply the animation to the image with the 'logo' class */
+.logo {
+  animation: fadeIn 2s ease-in-out forwards;
+  max-width: 50%; 
+  height: auto;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  h1 {
+      font-size: 1.5rem;
+  }
+
+  input, button[type="submit"], .boton {
+      font-size: 0.9rem;
+  }
+
+  th, td {
+      padding: 5px;
+  }
+
+  button[type="submit"], .boton {
+      padding: 15px;
+      font-size: 1.2rem;
+  }
+
+  form {
+      width: 90%;
+  }
+}
+
+/* Tablet and Desktop adjustments */
+@media (min-width: 768px) and (max-width: 992px) {
+  /* ... */
+}
+
+@media (min-width: 992px) and (max-width: 1200px) {
+  /* ... */
+}
+
+@media (min-width: 1200px) {
+  form {
+      max-width: 960px;
+  }
+  /* ... */
+}
+@media (max-width: 768px) {
+  /* ... [rest of your responsive styles] ... */
+  
+  #logo img {
+      width: 80%; /* Adjust the width of the logo for smaller devices */
+  }
+}

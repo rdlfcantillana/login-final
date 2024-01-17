@@ -1,0 +1,349 @@
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@700&display=swap');
+
+.navbar {
+    border: 1px solid #333; /* Border color updated */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.bg-body-tertiary {
+    border-color: #333; /* Border color updated for navbar */
+}
+
+.navbar a:hover {
+    color: #d8ae08; /* Highlight color when hovered over */
+  }
+body {
+    background-color: #f5f5dc; /* Fondo beige */
+    font-family: 'GFS Didot', serif; /* Fuente con estilo griego */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+h1 {
+    color: #d8ae08; /* Updated text color */
+    margin-top: 30px;
+    font-size: 2.5rem;
+    font-family: 'Merriweather', serif; /* Updated font family */
+    animation: mover-Der-a-Izq 2s 1;
+}
+@keyframes mover-Der-a-Izq{
+  from{
+    transform: translateX(100px);
+
+  }
+  to{
+    transform: translateX(5px);
+  }
+}
+input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #3498db; /* Bright blue border for inputs */
+    border-radius: 4px;
+    font-size: 1rem;
+    margin-bottom: 10px;
+}
+
+input[type="date"] {
+    width: 150px;
+}
+
+form {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 100%;
+    max-width: 600px;
+}
+
+table {
+    width: 100%;
+    margin-bottom: 20px;
+    background-color: #ecf0f1; /* Light grey for a clean look */
+    border-collapse: collapse;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+th, td {
+    padding: 10px;
+    border: 1px solid #3498db; /* Blue borders for a pop of color */
+    text-align: left;
+}
+
+th {
+    background-color: #3498db; /* Bright blue header */
+    color: #ffffff; /* White text for contrast */
+    font-family: 'Lato', sans-serif;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #f9f9f9; /* Zebra striping for tables */
+}
+
+tbody tr:hover {
+    background-color: #d6eaf8; /* Light blue for hover effect */
+}
+
+button[type="submit"], button[type="submit2"], .boton {
+    background-color: #e74c3c; /* Vibrant red for calls to action */
+    color: white;
+    border: none;
+    width: 50%;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+    margin-bottom: 10px;
+}
+
+button[type="submit"]:hover, .boton:hover {
+    background-color: #c0392b; /* Darker shade on hover for depth */
+}
+
+  
+/* Animation keyframes */
+@keyframes fadeIn {
+    0% { opacity: 0; filter: blur(20px); }
+    100% { opacity: 1; filter: blur(0); }
+  }
+  
+  /* Apply the animation to the image with the 'logo' class */
+  .logo {
+    animation: fadeIn 2s ease-in-out forwards;
+    max-width: 50%; 
+    height: auto;
+  }
+  
+/* Responsive styles */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    input, button[type="submit"], .boton {
+        font-size: 0.9rem;
+    }
+
+    th, td {
+        padding: 5px;
+    }
+
+    button[type="submit"], .boton {
+        padding: 15px;
+        font-size: 1.2rem;
+    }
+
+    form {
+        width: 90%;
+    }
+}
+
+/* Tablet and Desktop adjustments */
+@media (min-width: 768px) and (max-width: 992px) {
+    /* ... */
+}
+
+@media (min-width: 992px) and (max-width: 1200px) {
+    /* ... */
+}
+
+@media (min-width: 1200px) {
+    form {
+        max-width: 960px;
+    }
+    /* ... */
+}
+@media (max-width: 768px) {
+    /* ... [rest of your responsive styles] ... */
+    
+    #logo img {
+        width: 80%; /* Adjust the width of the logo for smaller devices */
+    }
+}
+
+
+/* Estilos base */
+.container {
+    width: 90%;
+    margin: auto;
+    max-width: 1200px;
+  }
+  
+  .table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .table th, .table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  /* Media query para pantallas pequeñas */
+  @media screen and (max-width: 600px) {
+    .table thead {
+      display: none; /* Oculta los encabezados en pantallas pequeñas */
+    }
+  
+    .table, .table tbody, .table tr, .table td {
+      display: block;
+      width: 100%;
+    }
+  
+    .table tr {
+      margin-bottom: 15px;
+    }
+  
+    .table td {
+      text-align: right;
+      padding-left: 50%;
+      position: relative;
+    }
+  
+    .table td::before {
+      /* Agrega el título de la columna antes de cada celda */
+      content: attr(data-label);
+      position: absolute;
+      left: 0;
+      width: 50%;
+      padding-left: 15px;
+      font-weight: bold;
+      text-align: left;
+    }
+  }
+  
+ /* Estilos Generales */
+.container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 20px;
+}
+
+.content-wrapper {
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilos para la Tabla */
+.table-container {
+  overflow-x: auto; /* Asegura que la tabla sea desplazable en pantallas pequeñas */
+}
+
+.custom-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+.custom-table th, .custom-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.custom-table th {
+  background-color: #f0f0f0;
+}
+
+/* Estilos para Botón de Volver */
+.btn-return {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.btn-return:hover {
+  background-color: #0056b3;
+}
+
+@media screen and (max-width: 768px) {
+  .container {
+    padding: 10px;
+  }
+
+  .content-wrapper {
+    padding: 10px;
+  }
+
+  .custom-table th, .custom-table td {
+    padding: 10px; /* Aumenta el padding para una mejor legibilidad en dispositivos móviles */
+  }
+}
+
+  
+  .table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .table th, .table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  /* Media query para pantallas pequeñas */
+  @media screen and (max-width: 600px) {
+    .table, .table tbody, .table tr, .table td, .table th {
+      display: block;
+    }
+  
+    .table tr {
+      margin-bottom: 10px;
+    }
+  
+    .table td {
+      text-align: right;
+      padding-left: 50%;
+      position: relative;
+    }
+  
+    .table td::before {
+      content: attr(data-label);
+      position: absolute;
+      left: 10px;
+      width: 50%;
+      padding-right: 10px;
+      white-space: nowrap;
+      text-align: left;
+      font-weight: bold;
+    }
+  }
+  
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

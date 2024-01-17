@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Lista de Pagos</title>
+  <link rel="stylesheet" href="/css/user-style-cargo.css">
+  <!-- <style>
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    th, td {
+      border: 1px solid #dddddd;
+      padding: 8px;
+      text-align: left;
+    }
+    th {
+      background-color: #f2f2f2;
+    }
+  </style> -->
+</head>
+<body>
+  <h1>Lista de Pagos</h1>
+  <% if (pagos.length > 0) { %>
+    <div class="table-responsive">
+      <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>ID Pago</th>
+          <th>Cliente</th>
+          <th>Forma de Pago</th>
+          <th>Banco</th>
+          <th>Fecha de Pago</th>
+          <th>ID Factura</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% pagos.forEach(pago => { %>
+          <tr>
+            <td><%= pago.id_pago %></td>
+            <td><%= pago.nombre_completo %></td>
+            <td><%= pago.forma_pago %></td>
+            <td><%= pago.nom_banco %></td>
+            <td><%= new Date(pago.fe_pago).toLocaleDateString('es-ES') %></td>
+            <td><%= pago.id_factura %></td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  <% } else { %>
+    <p>No se encontraron pagos registrados.</p>
+  <% } %>
+</body>
+<a href="user/panel" class="boton">Volver al Panel</a>
+</html>

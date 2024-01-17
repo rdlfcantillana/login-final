@@ -1,0 +1,45 @@
+<%- include('../partials/header', { title: 'Register' , stylesheet: '/css/styleRegister.css' }) %>
+
+  <h1>Register</h1>
+
+  <ul>
+    <% if (typeof errors !='undefined' ) { %>
+      <% errors.forEach(error=> { %>
+        <li>
+          <%= error.message %>
+        </li>
+        <% }) %>
+          <% } %>
+  </ul>
+
+  <form action="register" method="POST">
+    <div>
+      <input type="text" id="name" name="name" placeholder="Name" required />
+    </div>
+    <div>
+      <input type="email" id="email" name="email" placeholder="Email" required />
+    </div>
+    <div>
+      <input type="password" id="password" name="password" placeholder="Password" required />
+    </div>
+    <div>
+      <input type="password" id="password2" name="password2" placeholder="Confirm Password" required />
+    </div>
+    <div>
+      <label for="role">Role:</label>
+      <select id="role" name="role">
+        <option value="user">User</option>
+        <option value="admin">Admin</option>
+      </select>
+    </div>
+
+    <div>
+      <input type="submit" value="Register" />
+    </div>
+
+
+
+    <a href="/sesions/login">Already registered? Login here</a>
+  </form>
+
+  <%- include('../partials/footer') %>

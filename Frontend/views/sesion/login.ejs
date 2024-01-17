@@ -1,0 +1,41 @@
+<%- include('../partials/header', { title: 'Login', stylesheet: '/css/styleLogin.css' }) %>
+
+<h1>Login</h1>
+
+<ul>
+  <% if (typeof errors != 'undefined') { %> 
+    <% errors.forEach(error => { %>
+      <li><%= error.message %></li>
+    <% }) %> 
+  <% } %>
+</ul>
+
+<ul>
+  <% if(messages.success_msg) { %>
+    <li><%= messages.success_msg %></li>
+  <% } %>
+</ul>
+
+<ul>
+  <% if (messages.error) { %>
+    <li><%= messages.error %></li>
+  <% } %>
+</ul>
+
+<form action="login" method="POST">
+  <div>
+    <input type="email" id="email" name="email" placeholder="Email" required />
+  </div>
+  <div>
+    <input type="password" id="password" name="password" placeholder="Password" required />
+  </div>
+  <div>
+    <input type="submit" value="Login" />
+  </div>
+  
+  <a href="/sesions/register">Register</a>
+  <a href="/sesions/forgot-password">olvido su contrasena?</a>
+  
+</form>
+
+<%- include('../partials/footer') %>
